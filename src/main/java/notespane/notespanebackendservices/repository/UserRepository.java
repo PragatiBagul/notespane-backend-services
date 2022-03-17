@@ -26,7 +26,7 @@ public class UserRepository {
         return user;
     }
 
-    public User get(String uid) throws InterruptedException, ExecutionException {
+    public User getById(String uid) throws InterruptedException, ExecutionException {
         Firestore db = FirestoreClient.getFirestore();
         ApiFuture<DocumentSnapshot> apiFuture = db.collection("user").document(uid).get();
 

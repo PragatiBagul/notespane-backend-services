@@ -1,23 +1,55 @@
 package notespane.notespanebackendservices.model;
 
+import lombok.AllArgsConstructor;
+import lombok.NoArgsConstructor;
+
+import javax.persistence.*;
+import java.util.Set;
+
+@Entity
+@NoArgsConstructor
+@AllArgsConstructor
 public class User {
+    @Id
+    @Column(name = "id")
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Long id;
+
+    @Column(name = "uid")
     private String uid;
+
+    @Column(name="name")
     private String name;
+
+    @Column(name = "email")
     private String email;
+
+    @Column(name="last_login")
     private long lastLogin;
-    private String bio;
 
-    public User(String uid, String name, String email, long lastLogin, String bio) {
-        super();
-        this.uid = uid;
-        this.name = name;
-        this.email = email;
-        this.lastLogin = lastLogin;
-        this.setBio(bio);
-    }
+    @Column(name = "website_url")
+    private String websiteURL;
 
-    public User() {
-    }
+    @Column(name = "linkedin_url")
+    private String linkedinURL;
+
+    @Column(name = "facebook_url")
+    private String facebookURL;
+
+    @Column(name="pronoun")
+    private String pronoun;
+
+    @Column(name = "qualification")
+    private String qualification;
+
+    @OneToMany(cascade = CascadeType.ALL)
+    private Set<Topic> topics;
+
+    @OneToMany(cascade = CascadeType.ALL)
+    private Set<UserLike> userLikes;
+
+    @OneToMany(cascade = CascadeType.ALL)
+    private Set<Comment> comments;
 
     public String getUid() {
         return uid;
@@ -51,11 +83,43 @@ public class User {
         this.lastLogin = lastLogin;
     }
 
-    public String getBio() {
-        return bio;
+    public String getWebsiteURL() {
+        return websiteURL;
     }
 
-    public void setBio(String bio) {
-        this.bio = bio;
+    public void setWebsiteURL(String websiteURL) {
+        this.websiteURL = websiteURL;
+    }
+
+    public String getLinkedinURL() {
+        return linkedinURL;
+    }
+
+    public void setLinkedinURL(String linkedinURL) {
+        this.linkedinURL = linkedinURL;
+    }
+
+    public String getFacebookURL() {
+        return facebookURL;
+    }
+
+    public void setFacebookURL(String facebookURL) {
+        this.facebookURL = facebookURL;
+    }
+
+    public String getPronoun() {
+        return pronoun;
+    }
+
+    public void setPronoun(String pronoun) {
+        this.pronoun = pronoun;
+    }
+
+    public String getQualification() {
+        return qualification;
+    }
+
+    public void setQualification(String qualification) {
+        this.qualification = qualification;
     }
 }

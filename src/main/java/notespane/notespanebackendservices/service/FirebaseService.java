@@ -17,11 +17,9 @@ public class FirebaseService {
     @PostConstruct
     public void initializeFirebaseApp() throws IOException {
         InputStream serviceAccount = this.getClass().getResourceAsStream("/notespaneServiceAccountKey.json");
-
         FirebaseOptions options = new FirebaseOptions.Builder()
                 .setCredentials(GoogleCredentials.fromStream(serviceAccount))
                 .setDatabaseUrl("https://notespane-19f22.asia-south1.firebasedatabase.app").build();
-
         FirebaseApp.initializeApp(options);
     }
 
