@@ -5,13 +5,15 @@ import notespane.notespanebackendservices.repository.CommentRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Optional;
+
 @Service
 public class CommentService {
     @Autowired
     private CommentRepository commentRepository;
 
-    public Comment fetchComment(Long commentId) {
-        return commentRepository.getById(commentId);
+    public Optional<Comment> fetchComment(Long commentId) {
+        return commentRepository.findById(commentId);
     }
 
     public Comment createComment(String activityType,long activityId,long userId,String commentText)
@@ -21,8 +23,7 @@ public class CommentService {
         return commentRepository.save(comment);
     }
 
-    public void deleteComment(long commentId) {
-        commentRepository.deleteAllByCommentId(commentId);
+    public void deleteComment(Long commentId) {
         commentRepository.deleteById(commentId);
     }
 }

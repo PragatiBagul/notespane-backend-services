@@ -5,6 +5,7 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.util.Set;
+import java.util.UUID;
 
 @Entity
 @NoArgsConstructor
@@ -17,6 +18,9 @@ public class User {
 
     @Column(name = "uid")
     private String uid;
+
+    @Column(name="profileImage")
+    private String profileImage;
 
     @Column(name="name")
     private String name;
@@ -50,6 +54,40 @@ public class User {
 
     @OneToMany(cascade = CascadeType.ALL)
     private Set<Comment> comments;
+
+    //@org.springframework.data.annotation.Transient
+    //EdgeStack edgeStack;
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public Set<Topic> getTopics() {
+        return topics;
+    }
+
+    public void setTopics(Set<Topic> topics) {
+        this.topics = topics;
+    }
+
+    public Set<UserLike> getUserLikes() {
+        return userLikes;
+    }
+
+    public void setUserLikes(Set<UserLike> userLikes) {
+        this.userLikes = userLikes;
+    }
+
+    public Set<Comment> getComments() {
+        return comments;
+    }
+
+    public void setComments(Set<Comment> comments) {
+        this.comments = comments;
+    }
 
     public String getUid() {
         return uid;
@@ -121,5 +159,13 @@ public class User {
 
     public void setQualification(String qualification) {
         this.qualification = qualification;
+    }
+
+    public String getProfileImage() {
+        return profileImage;
+    }
+
+    public void setProfileImage(String profileImage) {
+        this.profileImage = profileImage;
     }
 }

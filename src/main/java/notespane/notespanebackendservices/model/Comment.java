@@ -30,7 +30,7 @@ public class Comment {
     private User user;
 
     @NotNull
-    @Column(name = "comment_text")
+    @Column(name = "comment_text" , length = 1000)
     private String commentText;
 
     @NotNull

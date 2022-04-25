@@ -23,10 +23,10 @@ public class Topic {
     private User user;
 
     @NotNull
-    @Column(name = "topic_name")
+    @Column(name = "topic_name",length = 1000)
     private String topicName;
 
-    @Column(name = "topic_description")
+    @Column(name = "topic_description", length = 1000)
     private String topicDescription;
 
     @NotNull

@@ -2,6 +2,7 @@ package notespane.notespanebackendservices.model;
 
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
+import org.springframework.data.annotation.CreatedDate;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
@@ -23,12 +24,20 @@ public class Post {
     private Topic topic;
 
     @NotNull
-    @Column(name = "post_title")
+    @Column(name = "post_title", length = 1000)
     private String postTitle;
 
-    @Column(name = "post_description")
+    @Column(name = "post_description", length = 1000)
     private String postDescription;
 
+    /*
+    * Content Type can be
+    * 1. image
+    * 2. attachment (pdf)
+    * 3. flashcards
+    * 4. mock tests
+    * 5. course
+    * */
     @Column(name = "content_type")
     private String contentType;
 
@@ -39,6 +48,7 @@ public class Post {
     private String category;
 
     @NotNull
+    @CreatedDate
     @Column(name = "timestamp_of_creation")
     private Timestamp timestampOfCreation;
 

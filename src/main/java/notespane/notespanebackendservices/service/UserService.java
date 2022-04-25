@@ -8,6 +8,8 @@ import notespane.notespanebackendservices.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class UserService {
 
@@ -45,5 +47,9 @@ public class UserService {
         user.setPronoun(userBody.getPronoun());
         user.setQualification(userBody.getQualification());
         return userRepository.save(user);
+    }
+
+    public List<User> fetchAllUsers() {
+        return userRepository.findAll();
     }
 }

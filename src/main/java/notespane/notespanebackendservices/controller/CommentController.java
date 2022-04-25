@@ -1,13 +1,13 @@
 package notespane.notespanebackendservices.controller;
 
 import notespane.notespanebackendservices.model.Comment;
-import notespane.notespanebackendservices.repository.CommentRepository;
 import notespane.notespanebackendservices.service.CommentService;
-import org.apache.coyote.Response;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.UUID;
 
 @RestController
 @CrossOrigin(origins = "http://localhost:3000")
@@ -28,7 +28,7 @@ public class CommentController {
         return new ResponseEntity(comment,HttpStatus.OK);
     }
     @DeleteMapping("delete")
-    public ResponseEntity deleteComment(@RequestBody long commentId)
+    public ResponseEntity deleteComment(@RequestBody Long commentId)
     {
         commentService.deleteComment(commentId);
         return new ResponseEntity(HttpStatus.OK);
