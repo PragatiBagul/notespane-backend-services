@@ -33,4 +33,12 @@ public class FollowerController {
     {
         return new ResponseEntity(followerService.fetchFollowersForTopic(topicId), HttpStatus.OK);
     }
+
+    @PostMapping("/followers/followUser/{userId}")
+    public ResponseEntity<Follower> followUser(@PathVariable Long userId)
+    {
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        String followerUid = authentication.getName();
+        return new responseEntity(followerService.followUser(userId, followerUid),HttpStatus.OK);
+    }
 }
