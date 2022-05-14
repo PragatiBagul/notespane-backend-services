@@ -17,7 +17,7 @@ public class User {
     private Long id;
 
     @Column(name = "uid")
-    private String uid;
+    private String uid; // Firebase Identification
 
     @Column(name="profileImage")
     private String profileImage;

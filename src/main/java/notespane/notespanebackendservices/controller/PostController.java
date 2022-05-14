@@ -1,7 +1,6 @@
 package notespane.notespanebackendservices.controller;
 
 import com.amazonaws.AmazonServiceException;
-import com.amazonaws.services.s3.model.ObjectMetadata;
 import com.amazonaws.services.s3.model.S3Object;
 import com.amazonaws.services.s3.model.S3ObjectInputStream;
 import com.amazonaws.util.IOUtils;
@@ -9,7 +8,6 @@ import lombok.extern.slf4j.Slf4j;
 import notespane.notespanebackendservices.model.Post;
 import notespane.notespanebackendservices.service.PostService;
 import notespane.notespanebackendservices.util.ContentType;
-import org.slf4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
@@ -23,7 +21,6 @@ import org.springframework.web.multipart.MultipartFile;
 import java.io.IOException;
 import java.util.Base64;
 import java.util.List;
-import java.util.UUID;
 
 @RestController
 @CrossOrigin("http://localhost:3000")
@@ -32,6 +29,13 @@ import java.util.UUID;
 public class PostController {
     @Autowired
     PostService postService;
+    @GetMapping("")
+    public ResponseEntity<List<Post>> getFeed()
+    {
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        String uid = authentication.getName(); // Firebase uid
+        return new  ResponseEntity(postService.getFeed(), HttpStatus.OK);
+    }
     @GetMapping("{id}")
     public ResponseEntity<Post> fetchPost(@RequestParam(value = "id")Long postId)
     {
@@ -66,7 +70,6 @@ public class PostController {
         String uid = authentication.getName(); // Firebase uid
         postService.uploadPostContent(uid,postId,file, ContentType.IMAGE);
     }
-
     @PostMapping(
             path = "{postId}/content/attachment",
             consumes = MediaType.MULTIPART_FORM_DATA_VALUE,

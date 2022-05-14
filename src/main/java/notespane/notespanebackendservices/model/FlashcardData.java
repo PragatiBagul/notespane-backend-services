@@ -1,5 +1,12 @@
 package notespane.notespanebackendservices.model;
 
+import lombok.AllArgsConstructor;
+import lombok.NoArgsConstructor;
+
+import javax.persistence.*;
+import javax.validation.constraints.NotNull;
+import java.util.Set;
+
 @Entity
 @NoArgsConstructor
 @AllArgsConstructor
@@ -34,9 +41,6 @@ public class FlashcardData {
         return flashcard;
     }
 
-    public void setFlashcard(Set<Flashcard> flashcard) {
-        this.flashcard = flashcard;
-    }
 
     public String getFlashcardQuestion() {
         return flashcardQuestion;

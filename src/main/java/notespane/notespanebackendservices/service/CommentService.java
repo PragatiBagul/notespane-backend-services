@@ -12,8 +12,8 @@ public class CommentService {
     @Autowired
     private CommentRepository commentRepository;
 
-    public Optional<Comment> fetchComment(Long commentId) {
-        return commentRepository.findById(commentId);
+    public Comment fetchComment(Long commentId) {
+        return commentRepository.findById(commentId).orElse(null);
     }
 
     public Comment createComment(String activityType,long activityId,long userId,String commentText)

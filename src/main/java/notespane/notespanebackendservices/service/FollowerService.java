@@ -1,10 +1,15 @@
 package notespane.notespanebackendservices.service;
 
+import notespane.notespanebackendservices.model.Follower;
+import notespane.notespanebackendservices.model.Topic;
 import notespane.notespanebackendservices.model.User;
 import notespane.notespanebackendservices.repository.FollowerRepository;
+import notespane.notespanebackendservices.repository.TopicRepository;
+import notespane.notespanebackendservices.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 @Service
 public class FollowerService {
@@ -12,7 +17,7 @@ public class FollowerService {
     @Autowired
     FollowerRepository followerRepository;
     @Autowired
-    UserRepository userRepository;
+    UserService userService;
     @Autowired
     TopicRepository topicRepository;
     public List<User> fetchFollowing(Long userId)
@@ -29,8 +34,8 @@ public class FollowerService {
     }
 
     public List<Follower> followUser(Long userId, String followerUid) {
-        User user = userRepository.findById(userId);
-        User follower = userRepository.findById(followerUid);
+        User user = userService.getUser(userId);
+        User self = userService.getUser(followerUid);
 
         List<Topic> topics = topicRepository.findAllByUser(user);
         List<Follower> followers = new ArrayList<>();
@@ -38,7 +43,7 @@ public class FollowerService {
             Follower follower = new Follower();
             follower.setUser(user);
             follower.setTopic(topic);
-            follower.setFollower(follower);
+            follower.setFollower(self);
             followers.add(followerRepository.save(follower));
         }
         return followers;

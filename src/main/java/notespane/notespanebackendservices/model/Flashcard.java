@@ -36,6 +36,10 @@ public class Flashcard {
     @Column(name = "timestamp_of_creation")
     private Timestamp timestampOfCreation;
 
+    @NotNull
+    @Column(name = "timestamp_of_update")
+    private Timestamp timestampOfUpdate;
+
 
     public Long getId() {
         return id;

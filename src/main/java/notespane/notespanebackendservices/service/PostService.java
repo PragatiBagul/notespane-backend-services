@@ -100,7 +100,11 @@ public class PostService {
         );
 
         String key = content[0];
-
         return fileStore.download(path,key);
+    }
+
+    public List<Post> getFeed() {
+        List<Post> posts = postRepository.findAll();
+        return posts;
     }
 }

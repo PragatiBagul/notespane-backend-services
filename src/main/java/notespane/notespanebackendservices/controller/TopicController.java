@@ -33,12 +33,12 @@ public class TopicController {
     }
 
     @GetMapping("{id}")
-    public ResponseEntity<Topic> fetchTopic(@RequestBody Long topicId)
+    public ResponseEntity<Topic> fetchTopic(@PathVariable Long topicId)
     {
         return new ResponseEntity(topicService.fetchTopic(topicId),HttpStatus.OK);
     }
     @PutMapping("/update/{id}")
-    public ResponseEntity<Topic> updateTopic(@RequestBody long id,@RequestBody String topicName,@RequestBody String topicDescription)
+    public ResponseEntity<Topic> updateTopic(@PathVariable long id,@RequestBody String topicName,@RequestBody String topicDescription)
     {
         return new ResponseEntity(topicService.updateTopic(id,topicName,topicDescription), HttpStatus.OK);
     }

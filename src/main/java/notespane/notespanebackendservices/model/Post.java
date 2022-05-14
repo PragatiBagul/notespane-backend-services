@@ -22,12 +22,10 @@ public class Post {
     @ManyToOne
     @JoinColumn(name = "topic_id")
     private Topic topic;
-
-    @NotNull
-    @Column(name = "post_title", length = 1000)
+    @Column(name = "post_title")
     private String postTitle;
 
-    @Column(name = "post_description", length = 1000)
+    @Column(name = "post_description")
     private String postDescription;
 
     /*

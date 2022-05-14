@@ -1,6 +1,7 @@
 package notespane.notespanebackendservices.service;
 
 import notespane.notespanebackendservices.model.Flashcard;
+import notespane.notespanebackendservices.repository.FlashcardDataRepository;
 import notespane.notespanebackendservices.repository.FlashcardRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -10,7 +11,7 @@ import java.util.Date;
 import java.util.List;
 
 @Service
-public class TopicService {
+public class FlashcardService {
     @Autowired
     FlashcardRepository flashcardRepository;
 

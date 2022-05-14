@@ -37,6 +37,11 @@ public class UserService {
         return userRepository.findByUid(uid);
     }
 
+    public User getUser(Long id)
+    {
+        return userRepository.findById(id).orElse(null);
+    }
+
     public User update(String uid, User userBody) {
         User user = userRepository.findByUid(uid);
         user.setName(userBody.getName());

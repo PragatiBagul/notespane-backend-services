@@ -1,14 +1,14 @@
 package notespane.notespanebackendservices.controller;
 
+import notespane.notespanebackendservices.model.Follower;
 import notespane.notespanebackendservices.model.User;
 import notespane.notespanebackendservices.service.FollowerService;
-import org.apache.coyote.Response;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
-
-import javax.swing.text.html.parser.Entity;
 import java.util.List;
 
 @RestController
@@ -39,6 +39,6 @@ public class FollowerController {
     {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         String followerUid = authentication.getName();
-        return new responseEntity(followerService.followUser(userId, followerUid),HttpStatus.OK);
+        return new ResponseEntity(followerService.followUser(userId, followerUid),HttpStatus.OK);
     }
 }
