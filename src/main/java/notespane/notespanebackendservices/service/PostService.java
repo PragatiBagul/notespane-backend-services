@@ -104,7 +104,9 @@ public class PostService {
     }
 
     public List<Post> getFeed() {
-        List<Post> posts = postRepository.findAll();
+
+        //List<Post> posts = postRepository.findAll();
+        List<Post> posts = new ArrayList<>();
         return posts;
     }
 }
